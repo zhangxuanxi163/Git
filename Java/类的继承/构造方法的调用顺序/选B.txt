@@ -1,0 +1,86 @@
+阅读程序，写运行结果。
+
+class Animal {
+    String name;
+    public Animal() {
+        System.out.println("Animal的构造方法被调用");
+        name = "Unknown";
+    }
+}
+class Dog extends Animal {
+    int age;
+    public Dog() {
+        System.out.println("Dog的无参构造方法被调用");
+        age = 1;
+    }
+    public Dog(String name, int age) {
+        super.name = name; 
+        System.out.println("Dog的有参构造方法被调用");
+        this.age = age;
+    }
+}
+public class Main{
+    public static void main(String[] args) {
+        Dog dog1 = new Dog();  
+        Dog dog2 = new Dog("Bobby", 3);
+    }
+}
+
+A、
+Animal的构造方法被调用
+Animal的构造方法被调用
+Dog的有参构造方法被调用
+
+
+B、
+Animal的构造方法被调用
+Dog的无参构造方法被调用
+Animal的构造方法被调用
+Dog的有参构造方法被调用
+
+
+C、
+Dog的无参构造方法被调用
+Dog的有参构造方法被调用
+
+
+D、
+Animal的构造方法被调用
+Animal的构造方法被调用
+Dog的无参构造方法被调用
+Dog的有参构造方法被调用
+
+解答：
+
+我们可以通过分析程序中的继承关系和构造方法的调用顺序来推导运行结果。
+
+程序解析：
+Animal 类的构造方法：
+
+Animal 类有一个构造方法，打印 "Animal的构造方法被调用"，并将 name 初始化为 "Unknown"。
+Dog 类的构造方法：
+
+Dog 类继承了 Animal 类，因此每次创建 Dog 对象时，都会先调用 Animal 的构造方法。
+Dog 类有两个构造方法：
+无参构造方法：打印 "Dog的无参构造方法被调用"，并将 age 初始化为 1。
+有参构造方法：通过 super.name = name 设置父类 Animal 的 name，然后打印 "Dog的有参构造方法被调用"，并将 age 初始化为传入的 age 值。
+Main 类的 main 方法：
+
+Dog dog1 = new Dog(); 创建了一个 Dog 对象 dog1，会先调用 Animal 的构造方法，再调用 Dog 的无参构造方法。
+Dog dog2 = new Dog("Bobby", 3); 创建了另一个 Dog 对象 dog2，会先调用 Animal 的构造方法，再调用 Dog 的有参构造方法。
+构造方法调用顺序：
+创建 dog1 时：
+
+首先调用 Animal 的构造方法，输出：Animal的构造方法被调用
+然后调用 Dog 的无参构造方法，输出：Dog的无参构造方法被调用
+创建 dog2 时：
+
+首先调用 Animal 的构造方法，输出：Animal的构造方法被调用
+然后调用 Dog 的有参构造方法，输出：Dog的有参构造方法被调用
+最终输出：
+复制代码
+Animal的构造方法被调用
+Dog的无参构造方法被调用
+Animal的构造方法被调用
+Dog的有参构造方法被调用
+因此，正确的答案是 B。
