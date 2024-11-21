@@ -1,0 +1,248 @@
+1、
+
+阅读程序，写运行结果。
+
+class Parent {
+       public void printMessage() {
+           System.out.println("Parent message");
+       }
+}
+class Child extends Parent {
+       @Override
+       public void printMessage() {
+           super.printMessage();        //调用父类的printMessage方法
+           System.out.println("Child message");
+       }
+}
+   
+public class Main {
+       public static void main(String[] args) {
+           Child child = new Child();
+           child.printMessage();
+       }
+}
+
+A、
+Parent message
+
+
+B、
+Child message
+
+
+C、
+Parent message
+Child message
+
+
+D、
+Parent message Child message
+
+2、
+
+阅读程序，写运行结果。
+
+class Parent {
+       protected int value;
+       public Parent(int value) {
+           this.value = value;
+       }
+}
+class Child extends Parent {
+       public Child(int value) {
+           super(value);
+       }
+       public void printValue() {
+           System.out.println("Parent value: " + super.value);
+       }
+}
+   
+ public class Main{
+       public static void main(String[] args) {
+           Child child = new Child(10);
+           child.printValue();
+       }
+}
+
+A、
+Child value: 0
+
+
+B、
+Child value: 10
+
+
+C、
+Parent value: 0
+
+
+D、
+Parent value: 10
+
+3、
+
+阅读程序，写运行结果。
+
+class Parent {
+    private int age;
+    public Parent(int age) {
+        this.age = age;
+    }
+    public void displayAge() {
+        System.out.println("Parent: " + age);
+    }
+}
+class Child extends Parent {
+    private int age;
+    public Child(int age) {
+        super(age);
+        this.age = age;
+    }
+    public void displayAge() {
+        System.out.println("Child: " + age);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Parent parent = new Parent(40);
+        parent.displayAge();  
+        Child child = new Child(10);
+        child.displayAge();  
+    }
+}
+
+A、
+Parent: 40
+Child: 10
+
+
+B、
+Parent: 40
+Child: 40
+
+
+C、
+Parent: 10
+Child: 10
+
+
+D、
+Parent: 10
+Child: 40
+
+解答：
+问题 1：
+java
+复制代码
+class Parent {
+       public void printMessage() {
+           System.out.println("Parent message");
+       }
+}
+class Child extends Parent {
+       @Override
+       public void printMessage() {
+           super.printMessage();        //调用父类的printMessage方法
+           System.out.println("Child message");
+       }
+}
+   
+public class Main {
+       public static void main(String[] args) {
+           Child child = new Child();
+           child.printMessage();
+       }
+}
+解析：
+
+Child 类继承自 Parent 类，并重写了 printMessage 方法。
+在 Child 类的 printMessage 方法中，先调用 super.printMessage()，即父类的 printMessage，打印 Parent message。
+然后打印 Child message。
+运行结果：
+
+复制代码
+Parent message
+Child message
+答案：C
+
+问题 2：
+java
+复制代码
+class Parent {
+       protected int value;
+       public Parent(int value) {
+           this.value = value;
+       }
+}
+class Child extends Parent {
+       public Child(int value) {
+           super(value);
+       }
+       public void printValue() {
+           System.out.println("Parent value: " + super.value);
+       }
+}
+   
+ public class Main{
+       public static void main(String[] args) {
+           Child child = new Child(10);
+           child.printValue();
+       }
+}
+解析：
+
+Parent 类有一个构造方法，初始化 value。
+Child 类继承自 Parent 类，在构造方法中调用 super(value) 初始化父类的 value。
+Child 类的 printValue 方法打印父类的 value，即 super.value。
+运行结果：
+
+yaml
+复制代码
+Parent value: 10
+答案：D
+
+问题 3：
+java
+复制代码
+class Parent {
+    private int age;
+    public Parent(int age) {
+        this.age = age;
+    }
+    public void displayAge() {
+        System.out.println("Parent: " + age);
+    }
+}
+class Child extends Parent {
+    private int age;
+    public Child(int age) {
+        super(age);
+        this.age = age;
+    }
+    public void displayAge() {
+        System.out.println("Child: " + age);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Parent parent = new Parent(40);
+        parent.displayAge();  
+        Child child = new Child(10);
+        child.displayAge();  
+    }
+}
+解析：
+
+Parent 类有一个 private 成员变量 age 和一个构造方法，它初始化 age。
+Child 类也有一个 private 成员变量 age，并且调用父类构造函数初始化父类的 age。然后，Child 类有一个重写的 displayAge 方法，打印 Child 类自己的 age。
+在 Main 方法中：
+
+第一个 parent.displayAge() 会调用 Parent 类的 displayAge 方法，打印父类的 age，即 40。
+第二个 child.displayAge() 会调用 Child 类的 displayAge 方法，打印 Child 类自己的 age，即 10。
+运行结果：
+
+makefile
+复制代码
+Parent: 40
+Child: 10
+答案：A
